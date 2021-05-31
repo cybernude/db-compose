@@ -1,0 +1,21 @@
+version: '3.3'
+networks:
+  db-network:
+#  common-network:
+#    external:
+#      name: common-network
+services:
+   db:
+     image: mariadb:10.2
+#     container_name: db-server
+     ports:
+       - "3306:3306"
+     networks:
+       - db-network
+#       - common-network
+     volumes:
+       - ./db:/var/lib/mysql
+       - ./config/my.cnf:/etc/mysql/my.cnf
+     restart: always
+     environment:
+       - MYSQL_ROOT_PASSWORD=##212224##
